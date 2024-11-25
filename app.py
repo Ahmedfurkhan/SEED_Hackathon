@@ -35,6 +35,7 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 diabetes_model = pickle.load(open(f'{working_dir}/saved_models/diabetes_model.sav', 'rb'))
 heart_disease_model = pickle.load(open(f'{working_dir}/saved_models/heart_disease_model.sav', 'rb'))
 parkinsons_model = pickle.load(open(f'{working_dir}/saved_models/parkinsons_model.sav', 'rb'))
+cancer_model = pickle.load(open(f'{working_dir}/saved_models/cancer_model.sav','rb'))
 
 # Sidebar for navigation
 with st.sidebar:
@@ -43,10 +44,11 @@ with st.sidebar:
                              'AI Medical Assistant',
                              'Diabetes Prediction',
                              'Heart Disease Prediction',
+                             'Cancer Disease Prediction',
                              'Parkinsons Prediction'                             
                              ],  # Added Audio Transcription
                             menu_icon='hospital-fill',
-                            icons=['house', 'activity', 'heart', 'person', 'robot', 'mic'],
+                            icons=['house', 'robot', 'droplet', 'heart-pulse', 'biotech', 'brain'],  # Updated icons
                             default_index=0)
 
 
@@ -86,6 +88,7 @@ if selected == 'Home':
     1. **Diabetes Prediction**: Using machine learning to assess the risk of diabetes based on various health parameters.
     2. **Heart Disease Prediction**: Leveraging AI to evaluate the likelihood of heart disease using clinical data.
     3. **Parkinson's Disease Detection**: Employing machine learning algorithms to identify potential indicators of Parkinson's disease.
+    4. **Cancer Detection**: Using machine learning algorithms to identify potential indicators of Cancer's disease.
     4. **AI Medical Assistant**: Utilizing the power of advanced language models to provide general medical advice and insights based on reported symptoms.
 
     These AI-powered tools aim to provide quick, accurate, and accessible health assessments, particularly beneficial 
@@ -190,6 +193,50 @@ if selected == 'Heart Disease Prediction':
         except ValueError:
             heart_diagnosis = 'Please enter valid numerical values for all fields.'
     st.write(heart_diagnosis)
+
+# Cancer Detection Page
+if selected == 'Cancer Disease Prediction':
+    st.title('Cancer Detection using ML')
+    st.write("""
+    This tool uses machine learning to evaluate the likelihood of cancer based on various parameters. 
+    Please enter the following information:
+    """)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        age = st.text_input('Age')
+    with col2:
+        gender = st.text_input('Gender (0 for Male, 1 for Female)')
+    with col3:
+        bmi = st.text_input('BMI')
+    with col1:
+        smoking = st.text_input('Do you smoke? (0 for No, 1 for Yes)')
+    with col2:
+        genetic_risk = st.text_input('Genetic Risk (0 for Low, 1 for Medium, 2 for High)')
+    with col3:
+        physical_activity = st.text_input('Physical Activity (hours per week)')
+    with col1:
+        alcohol_intake = st.text_input('Alcohol Intake (units per week)')
+    with col2:
+        cancer_history = st.text_input('Cancer History (0 for No, 1 for Yes)')
+
+    cancer_diagnosis = ''
+    if st.button('Cancer Test Result'):
+        try:
+            user_input = [age, gender, bmi, smoking, genetic_risk, physical_activity, alcohol_intake, cancer_history]
+            user_input = [float(x) for x in user_input]
+            
+            # Predict using the cancer detection model
+            cancer_prediction = cancer_model.predict([user_input])
+            if cancer_prediction[0] == 1:
+                cancer_diagnosis = 'Sorry, you have been diagnosed as cancer positive.'
+            else:
+                cancer_diagnosis = 'You have been diagnosed to be cancer negative.'
+        except ValueError:
+            cancer_diagnosis = 'Please enter valid numerical values for all fields.'
+
+    st.write(cancer_diagnosis)
 
 # Parkinson's Prediction Page
 if selected == "Parkinsons Prediction":
