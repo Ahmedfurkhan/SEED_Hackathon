@@ -54,7 +54,7 @@ with st.sidebar:
 
 # Home Page / Landing Page
 if selected == 'Home':
-    st.title('AI-Powered Medical Diagnostics Assistant and Detection')
+    st.title('AI-Powered Multi-Disease Detection and Diagnostic Analysis of Medical Reports and X-Rays Using Llama 3.2')
     st.image("Home.png",
              caption="Empowering Healthcare in Remote Areas")
 
