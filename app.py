@@ -48,7 +48,7 @@ with st.sidebar:
                              'Parkinsons Prediction'                             
                              ],  # Added Audio Transcription
                             menu_icon='hospital-fill',
-                            icons=['house', 'robot', 'droplet', 'heart-pulse', 'biotech', 'brain'],  # Updated icons
+                            icons=['house', 'robot', 'droplet-half', 'heart-pulse', 'heart', 'activity'],  # Updated icons
                             default_index=0)
 
 
