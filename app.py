@@ -70,7 +70,7 @@ if selected == 'Home':
 
     st.markdown('**Our Solution**')
     st.write("""
-    The AI-Powered Medical Diagnostics Assistant is a mobile application leveraging advanced AI 
+    The AI-Powered Medical Diagnostics Assistant is a web application leveraging advanced AI 
     capabilities to analyze both text and images in real-time. Designed to work efficiently on low-latency, edge devices, 
     the app allows healthcare providers in remote areas to upload X-rays, CT scans, or medical reports, while patients 
     can report their symptoms through text or speech. 
@@ -89,7 +89,6 @@ if selected == 'Home':
     2. **Heart Disease Prediction**: Leveraging AI to evaluate the likelihood of heart disease using clinical data.
     3. **Parkinson's Disease Detection**: Employing machine learning algorithms to identify potential indicators of Parkinson's disease.
     4. **Cancer Detection**: Using machine learning algorithms to identify potential indicators of Cancer's disease.
-    4. **AI Medical Assistant**: Utilizing the power of advanced language models to provide general medical advice and insights based on reported symptoms.
 
     These AI-powered tools aim to provide quick, accurate, and accessible health assessments, particularly beneficial 
     in areas with limited access to specialized medical care.
